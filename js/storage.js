@@ -54,3 +54,4 @@ const storage = {
 };
 
 export default storage;
+// 데이터를 storage 오브젝트에 담아 내보냄

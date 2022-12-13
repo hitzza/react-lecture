@@ -16,5 +16,5 @@ function main() {
   };
 
   new Controller(store, views);
-  //생성한 인스턴스를 컨트롤러에넣어 컨트롤러 생성자 생성
+  //생성한 인스턴스를 컨트롤러에 넣어 컨트롤러 생성자 생성
 }
