@@ -65,4 +65,4 @@ export function createPastDate(date = 1, now = new Date()) {
 
 export function createNextId(list = []) {
   return Math.max(...list.map((item) => item.id)) + 1;
-}//회원 아이디를 하나씩 늘려가며 만들기 위한 함수
+}//회원 아이디를 하나씩 늘려가며 만들기 위한 유틸함수
