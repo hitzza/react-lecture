@@ -1,5 +1,5 @@
 import { createPastDate } from "./helpers.js";
-
+//어플리케이션에서 사용할 데이터 파일 
 const storage = {
   keywordData: [
     { id: 1, keyword: "샐러드" },
