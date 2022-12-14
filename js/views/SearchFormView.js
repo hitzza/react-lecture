@@ -26,11 +26,16 @@ export default class SearchFormView extends View{
         //inputElement의 keyup이벤트 발생시 호출
         on(this.element,'submit', (event) => this.handleSubmit(event));
         //#search-form-view 의 submit이벤트 발생시 호출
+        on(this.resetElement,'click', () => this.handleReset());
     }
     handleKeyUp(){//bindEvent함수에서 keyup이벤트에서 사용할 콜백함수
         const {value} = this.inputElement;
         this.showResetButton(value.length > 0);
         //검색어 입력란에 값이 있으면 ture 아니면 false를 showResetButton함수에 반환 
+        if(!value.length){
+            this.handleReset();
+        }
+        
     }
     handleSubmit(event){
         event.preventDefault();//form의 기본성질중 sibmit발생 시 페이지 리셋 기능을 제거하기 위해 사용
@@ -39,5 +44,10 @@ export default class SearchFormView extends View{
         //검색어로 사용하기 위한 현재 inputElement에 작성한 객체 생성
         this.emit('@submit', {value});
         //검색어로 검색기능 사용할 @submit함수 생성
+    }
+    handleReset(){
+        const {value} = this.inputElement;
+        this.showResetButton(false);
+        this.emit('@reset',{value});
     }
 }

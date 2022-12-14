@@ -15,9 +15,15 @@ export default class Controller {
   subscribeViewEvents(){
     this.searchFormView.on('@submit',(event) => this.search(event.detail.value));
     //검색 함수를 searchFormView에 할당
+    this.searchFormView.on('@reset',(event)=> this.resetText(event.detail.value));
+    //리셋 버튼 이벤트를 searchFormView에 할당
   }
-  search(keyword){//검색 기능을 수행할 함수
-    console.log(tag,'keyword',keyword);
+  search(searchKeyword){//검색 기능을 수행할 함수
+    console.log(tag,'keyword',searchKeyword);
     //추후 검색기능 추가 예정
+  }
+  resetText(resetKeyword){
+    console.log(tag,'resetEvent',resetKeyword);
+    //리셋시킨 키워드 값을 전달
   }
 }
