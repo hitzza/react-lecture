@@ -2,6 +2,7 @@ import View from "./View.js";
 import { qs, on } from '../helpers.js';
 
 const tag = '[SearchFormView]';
+//검색 폼 스크립트 
 
 export default class SearchFormView extends View{
     constructor(){
@@ -32,7 +33,7 @@ export default class SearchFormView extends View{
         const {value} = this.inputElement;
         this.showResetButton(value.length > 0);
         //검색어 입력란에 값이 있으면 ture 아니면 false를 showResetButton함수에 반환 
-        if(!value.length){
+        if(!value.length){//아무거도 입력되지 않으면 리셋 함수 호출
             this.handleReset();
         }
         
