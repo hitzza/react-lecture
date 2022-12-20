@@ -25,6 +25,7 @@ export default class Controller {
     //리셋 버튼 이벤트를 searchFormView에 할당
     this.tabView.on('@change', (event) => this.changeTab(event.detail.value));
     //변경된 탭 이벤트를 tabView에 할당
+    this.keywordListView.on('@click',(event) => this.search(event.detail.value));
   }
   search(searchKeyword){//검색 기능을 수행할 함수
     console.log(tag,'keyword',searchKeyword);
@@ -60,6 +61,7 @@ export default class Controller {
     this.searchResultView.hide();
   }
   renderSearchResult(){
+    this.searchFormView.show(this.store.searchKeyword);
     this.tabView.hide();
     this.keywordListView.hide();
 
