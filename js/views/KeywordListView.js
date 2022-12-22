@@ -29,14 +29,17 @@ export default class KeywordListView extends View{
 }
 class Template{
     getEmptyMessage(){
-        return `<div class = 'empty-box'>추천 검색어가 없습니다</div>`
+        return `<div class = 'empty-box'>
+        추천 검색어가 없습니다
+        </div>
+        `;
     }
     getList(data = []){
         return`
             <ul class = 'list'>
             ${data.map(this._getItem).join('')}
             </ul>
-        `
+        `;
     }
     _getItem({id,keyword}){
         return `
@@ -44,6 +47,6 @@ class Template{
             <span class = 'number'>${id}</span>
             ${keyword}
         </li>
-        `
+        `;
     }
 }

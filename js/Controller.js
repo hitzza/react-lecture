@@ -27,8 +27,9 @@ export default class Controller {
     this.tabView.on('@change', (event) => this.changeTab(event.detail.value));
     //변경된 탭 이벤트를 tabView에 할당
     this.keywordListView.on('@click',(event) => this.search(event.detail.value));
+
     this.historyListView.on('@click',(event) => this.search(event.detail.value));
-    
+    this.historyListView.on('@remove',(event) => this.removeHistory(event.detail.value));
   }
   search(searchKeyword){//검색 기능을 수행할 함수
     console.log(tag,'keyword',searchKeyword);
@@ -39,6 +40,10 @@ export default class Controller {
   changeTab(tab){
     console.log(tag,'changeTab',tab);
     this.store.selectedTab = tab;
+    this.render();
+  }
+  removeHistory(keyword){
+    this.store.removeHistory(keyword);
     this.render();
   }
   resetText(resetKeyword){
