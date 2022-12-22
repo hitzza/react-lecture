@@ -5,7 +5,7 @@ const tag = "[Controller]";
 //생성 시점의 store와 View를 받음
 
 export default class Controller {
-  constructor(store, {searchFormView,searchResultView,tabView,keywordListView}) {
+  constructor(store, {searchFormView,searchResultView,tabView,keywordListView,historyListView}) {
     this.store = store;
     console.log(tag,'controller');
 
@@ -13,6 +13,7 @@ export default class Controller {
     this.searchResultView = searchResultView;
     this.tabView = tabView;
     this.keywordListView = keywordListView;
+    this.historyListView = historyListView;
 
     this.subscribeViewEvents();
     //뷰 이벤트들을 수신할 함수
@@ -26,6 +27,8 @@ export default class Controller {
     this.tabView.on('@change', (event) => this.changeTab(event.detail.value));
     //변경된 탭 이벤트를 tabView에 할당
     this.keywordListView.on('@click',(event) => this.search(event.detail.value));
+    this.historyListView.on('@click',(event) => this.search(event.detail.value));
+    
   }
   search(searchKeyword){//검색 기능을 수행할 함수
     console.log(tag,'keyword',searchKeyword);
@@ -52,8 +55,10 @@ export default class Controller {
 
     if (this.store.selectedTab === TabType.KEYWORD){
       this.keywordListView.show(this.store.getKeywordList());
+      this.historyListView.hide();
     }else if(this.store.selectedTab === TabType.HISTORY){
       this.keywordListView.hide();
+      this.historyListView.show(this.store.getHistoryList());
     }else{
       throw '사용할 수 없는 탭입니다.';
     }
@@ -64,6 +69,7 @@ export default class Controller {
     this.searchFormView.show(this.store.searchKeyword);
     this.tabView.hide();
     this.keywordListView.hide();
+    this.historyListView.hide();
 
     this.searchResultView.show(this.store.searchResult);  
   }

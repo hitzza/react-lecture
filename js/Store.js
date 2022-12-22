@@ -23,4 +23,10 @@ export default class Store {
   getKeywordList(){//storage에서 추천 검색어 키워드를 받아서 반환 
     return this.storage.keywordData;
   }
+  getHistoryList(){
+    return this.storage.historyData.sort(this._sorthHistory);
+  }
+  _sorthHistory(history1,history2){
+    return history2.date > history1.date;
+  }
 }
