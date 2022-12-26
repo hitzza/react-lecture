@@ -1,5 +1,7 @@
-const element = (
-    <>
+class App extends React.Component{
+    render(){
+        return (
+        <>
         <header>
             <h2 className="container">검색</h2>
         </header>
@@ -10,7 +12,9 @@ const element = (
             <button type="reset" className="btn-reset"></button>
         </form>
         </div>
-    </>
-);
+        </>
+        );
+    }
+}
 
-ReactDOM.render(element, document.querySelector('#app'));
+ReactDOM.render(<App/>, document.querySelector('#app'));
