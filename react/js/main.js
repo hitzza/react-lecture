@@ -9,9 +9,14 @@ class App extends React.Component{
     handleChangeInput(event){
         // this.state.searchKeyword = event.target.value;
         // this.forceUpdate();//변경된 값을 렌더링 해주기 위한 함수
-
+        const searchKeyword = event.target.value;  
+        
+        if (searchKeyword.length <= 0){
+            return this.handleReset();
+        }
+        
         this.setState({//react에서 state가 변경됨을 감지하는 함수(render함수 호출)
-            searchKeyword : event.target.value
+            searchKeyword : searchKeyword
         });
     }
     handleSubmit(event){
