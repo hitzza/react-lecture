@@ -1,5 +1,15 @@
 import store from './js/Store.js';
 
+const TabType = {
+    KEYWORD : 'KEYWORD',
+    HISTORY : 'history'
+};
+
+const TabLabel = {
+    [TabType.KEYWORD] : '추천 검색어',
+    [TabType.HISTORY] : '최근 검색어',
+}
+
 class App extends React.Component{
     constructor(){
         super();
@@ -8,6 +18,7 @@ class App extends React.Component{
             searchKeyword : '',
             searchResult : [],
             submitted :false,
+            selectedTab : TabType.KEYWORD,
         };
     }
     handleChangeInput(event){
@@ -15,7 +26,7 @@ class App extends React.Component{
         // this.forceUpdate();//변경된 값을 렌더링 해주기 위한 함수
         const searchKeyword = event.target.value;  
         
-        if (searchKeyword.length <= 0){//검색어가 없다면 리셋 버튼을 눌렀을때와 동일한 상태로 만듦
+        if (searchKeyword.length <= 0 && this.state.submitted){//검색어가 없다면 리셋 버튼을 눌렀을때와 동일한 상태로 만듦
             return this.handleReset();
         }
         
@@ -83,11 +94,11 @@ class App extends React.Component{
         const searchResult = (
             this.state.searchResult.length > 0 ?(
                 <ul className='result'>
-                    {this.state.searchResult.map((item)=>{
+                    {this.state.searchResult.map(({id, imageUrl, name})=>{
                         return (
-                            <li key = {item.id}>
-                                <img src = {item.imageUrl} alt={item.name}></img>
-                                <p>{item.name}</p>
+                            <li key = {id}>
+                                <img src = {imageUrl} alt={name}></img>
+                                <p>{name}</p>
                             </li>
                         );
                     })}
@@ -96,6 +107,27 @@ class App extends React.Component{
                 <div className ='empty-box'>검색 결과가 없습니다</div>
             )
         );
+
+        const taps = (
+            <>
+            <ul className='tabs'>
+                {Object.values(TabType).map((tabType)=> {
+                    return (
+                        <li 
+                        className={this.state.selectedTab === tabType ? 'active': ''} 
+                        key = {tabType}
+                        onClick={() => {this.setState({selectedTab : tabType})}}
+                        >
+                            {TabLabel[tabType]}
+                        </li>
+                    );
+                })}
+            </ul>
+            {this.state.selectedTab === TabType.KEYWORD && <>TODO:추천 검색어</>}
+            {this.state.selectedTab === TabType.HISTORY && <>TODO:최근 검색어</>}
+            </>
+        );
+
         return (
         <>
         <header>
@@ -105,7 +137,7 @@ class App extends React.Component{
         <div className="container">
         {searchForm}
         <div className ='content'/* 검색결과 */>
-            {this.state.submitted && searchResult}
+            {this.state.submitted ? searchResult : taps}
         </div>
         </div>
         </>
