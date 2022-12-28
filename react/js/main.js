@@ -1,3 +1,4 @@
+import { formatRelativeDate } from './js/helpers.js';
 import store from './js/Store.js';
 
 const TabType = {
@@ -20,12 +21,18 @@ class App extends React.Component{
             submitted :false,
             selectedTab : TabType.KEYWORD,
             keywordList : [],
+            historyList : [],
         };
     }
     /** Dom에 마운트가 완료되면 실행되는 함수 */
     componentDidMount(){
         const keywordList = store.getKeywordList();
-        this.setState({keywordList});
+        const historyList = store.getHistoryList();
+        
+        this.setState({
+            keywordList,
+            historyList,            
+                        });
     }
 
     handleChangeInput(event){
@@ -48,10 +55,12 @@ class App extends React.Component{
     }
     search(searchKeyword){
         const searchResult = store.search(searchKeyword);
+        const historyList = store.getHistoryList();
 
         this.setState({
             searchKeyword,
             searchResult,
+            historyList,
             submitted :true
         });
     }
@@ -76,6 +85,15 @@ class App extends React.Component{
             }
         )
     }
+    /** 검색기록의 삭제 버튼 */
+    handleClickRemoveHistory(event,keyword){
+        /** 상위 element의 이벤트 버블링을 막기위한 코드 */
+        event.stopPropagation();
+        
+        store.removeHistory(keyword);
+        const historyList = store.getHistoryList();
+        this.setState({historyList});
+    }
 
     render(){
         let resetButton = null;
@@ -83,6 +101,7 @@ class App extends React.Component{
             resetButton = <button type="reset" className="btn-reset"></button>
         }//입력값이 있으면 리셋버튼 활성화
         
+        /** 검색창 */
         const searchForm = (
         <form 
             onSubmit = {(event)=> this.handleSubmit(event)}//폼에서 서브밋 이벤트 발생시 호출
@@ -98,7 +117,7 @@ class App extends React.Component{
                 {resetButton/*리셋버튼*/}
                
             </form>);
-
+        /** 검색 결과 */
         const searchResult = (
             this.state.searchResult.length > 0 ?(
                 <ul className='result'>
@@ -131,6 +150,26 @@ class App extends React.Component{
                 })}
             </ul>    
         )
+        /** 검색기록 */
+        const historyList = (
+            <ul className='list'>
+                {this.state.historyList.map(({id, keyword, date})=>{
+                    return (
+                        <li 
+                        key = {id} 
+                        onClick = {() => {this.search(keyword)}}>
+                            <span>{keyword}</span>
+                            <span className ='date'>{formatRelativeDate(date)}</span>
+                            <button 
+                            className = 'btn-remove'
+                            onClick ={(event) => {this.handleClickRemoveHistory(event,keyword)}}
+                            ></button>
+                        </li>
+                    )
+                })}
+            </ul>
+        )
+
 
         const taps = (
             <>
@@ -148,7 +187,7 @@ class App extends React.Component{
                 })}
             </ul>
             {this.state.selectedTab === TabType.KEYWORD && keywordList}
-            {this.state.selectedTab === TabType.HISTORY && <>TODO:최근 검색어</>}
+            {this.state.selectedTab === TabType.HISTORY && historyList}
             </>
         );
 
