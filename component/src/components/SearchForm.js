@@ -36,5 +36,5 @@ const SearchForm = ({value, onChange, onSubmit, onReset}) => {
             )}
            
         </form>);
-}
+};
 export default SearchForm;
