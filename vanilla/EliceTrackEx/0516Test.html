@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        height: 1000px;
+        background-color: antiquewhite;
+      }
+      img {
+        width: 200px;
+        height: 10%;
+      }
+      .underline {
+        border: 1px solid #000;
+        margin: 16px 0;
+      }
+      #flex-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      #educations,
+      #skills,
+      #projects {
+        border: 1px solid #000;
+        width: 300px;
+      }
+      #educations:hover,
+      #skills:hover,
+      #projects:hover {
+        background-color: gainsboro;
+        cursor: pointer;
+      }
+      #description > p::before {
+        content: "! ";
+        background-color: red;
+      }
+      footer {
+        font-size: 80px;
+        position: fixed;
+      }
+      input[type="checkbox"]:checked + label {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="profile">
+      <img
+        src="https://cdn-api.elice.io/api/file/9e8397450bf144559977a6bb6c69fadb/elice%20x%20KDT.png?se=2100-12-31T00%3A00%3A00Z&sp=r&sv=2021-12-02&sr=b&sig=sCyNZZGI0C1wrWFQJmV7LwHv%2BIKb34ErlnGlO5aI4lI%3D"
+        alt="profile"
+      />
+    </div>
+    <div id="description">
+      <h1>최재혁</h1>
+      <p>Frontend Developer</p>
+      <p>cslzh4433@gmail.com</p>
+      <p>010-3875-2593</p>
+    </div>
+    <div class="underline"></div>
+    <h3>자기 소개</h3>
+    <div>저는 프론트엔드 개발자 준비중입니다.</div>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus sint
+      dicta ratione quae, laudantium eum deserunt magnam a dignissimos quia
+      voluptate tenetur, ad accusantium laboriosam laborum excepturi nemo in
+      architecto.
+    </div>
+    <div class="underline"></div>
+    <div id="flex-container">
+      <div id="educations">
+        <h3>교육</h3>
+        <ul>
+          <li>elice</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+      <div id="skills">
+        <h3>skill</h3>
+        <ol>
+          <li>React</li>
+          <li>TypeScript</li>
+          <li>Styled Component</li>
+        </ol>
+      </div>
+      <div id="projects">
+        <h3>project</h3>
+        <ol>
+          <li>
+            <input type="checkbox" id="chk1" />
+            <label for="chk1">Restaurants Map</label>
+          </li>
+          <li>
+            <input type="checkbox" id="chk2" />
+            <label for="chk2">Calculator</label>
+          </li>
+          <li>
+            <input type="checkbox" id="chk3" />
+            <label for="chk3">hitzza.github.io</label>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="underline"></div>
+
+    <footer>Thanks you</footer>
+  </body>
+</html>
