@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .header_inner {
+        width: 743px;
+        margin: 0 auto;
+        text-align: center;
+        z-index: -9999;
+      }
+      .logo {
+        display: inline-block;
+        width: 244px;
+        height: 107px;
+        background-image: url(https://www.pennmike.com/news/photo/202303/61924_85527_5827.jpg);
+        background-size: 244px 107px;
+        background-repeat: no-repeat;
+      }
+      .blind {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+      }
+
+      @media (max-width: 743px) {
+        .header_inner {
+          width: auto;
+        }
+      }
+    </style>
+    <title>네이버 : 로그인</title>
+  </head>
+  <body>
+    <div class="header_inner">
+      <header class="header">
+        <a href="" class="logo"><h1 class="blind">NAVER</h1></a>
+      </header>
+    </div>
+  </body>
+</html>
