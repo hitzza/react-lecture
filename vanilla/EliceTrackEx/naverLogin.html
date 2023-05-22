@@ -9,6 +9,21 @@
         box-sizing: border-box;
       }
 
+      #lang_select {
+        position: absolute;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        padding: 4px 10px 6px 8px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        width: 95px;
+        height: 30px;
+        border-radius: 0;
+        font-family: helvetica, sans-serif;
+        top: 20px;
+        right: 32px;
+      }
       .header_inner {
         width: 743px;
         margin: 0 auto;
@@ -22,6 +37,7 @@
         background-image: url(https://www.pennmike.com/news/photo/202303/61924_85527_5827.jpg);
         background-size: 244px 107px;
         background-repeat: no-repeat;
+        margin-top: 108px;
       }
       .blind {
         position: absolute;
@@ -45,6 +61,12 @@
       <header class="header">
         <a href="" class="logo"><h1 class="blind">NAVER</h1></a>
       </header>
+      <select name="language" id="lang_select">
+        <option>한국어</option>
+        <option>English</option>
+        <option>中文(简体)</option>
+        <option>中文(台灣)</option>
+      </select>
     </div>
   </body>
 </html>
